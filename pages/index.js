@@ -7,7 +7,7 @@ import Head from "next/head";
 
 export default function Home() {
   return (
-		<div className="pb-16">
+		<div className="pb-16 text-[#444444]">
 			<Head>
 				<script
 					src="https://kit.fontawesome.com/ecc785940a.js"

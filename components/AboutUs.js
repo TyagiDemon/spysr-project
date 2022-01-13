@@ -1,6 +1,6 @@
 function AboutUs() {
 	return (
-		<div className="p-36 text-[#444444] border-b-[2px]">
+		<div className="p-36 border-b-[2px]">
 			<div className="text-2xl font-bold font-sans">
 				We've served 9 million+ guests and we are here for you
 			</div>

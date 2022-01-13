@@ -1,6 +1,6 @@
 function Form() {
 	return (
-		<div className="flex-1 mt-8 text-gray-800 pb-8">
+		<div className="flex-1 mt-8 text-gray-800 pb-5">
 			<div>
 				<div className="text-2xl font-bold">Guests</div>
 
