@@ -1,7 +1,7 @@
 function SideBlock() {
 	return (
-		<div className="flex flex-col max-w-[33%] border-2 rounded-md p-5 text-gray-600 gap-3 mt-8">
-			<div className="gap-3 flex-col flex border-b-2 pb-4">
+		<div className="flex flex-col max-w-[33%] border-[1px] rounded-md p-5 text-gray-600 gap-3 mt-8 sticky top-0 h-min">
+			<div className="gap-3 flex-col flex border-b-[1px] pb-4">
 				<div className="flex items-center gap-2">
 					<div className="text-lg font-semibold text-gray-800 tracking-tight">
 						The London Pass - Unlimited Attractions Pass
@@ -20,7 +20,7 @@ function SideBlock() {
 				</div>
 			</div>
 
-			<div className="border-b-2 pb-4 gap-3 flex-col flex">
+			<div className="border-b-[1px] pb-4 gap-3 flex-col flex">
 				<div>
 					<i className="fas fa-star mr-2"></i>
 					4.5 star rating by 1225 customers
@@ -33,12 +33,12 @@ function SideBlock() {
 				</div>
 			</div>
 
-			<div className="flex justify-between font-semibold border-b-2 pb-4">
+			<div className="flex justify-between font-semibold border-b-[1px] pb-4">
 				<div className="">1 Adult</div>
 				<div className="">&#8377; 95</div>
 			</div>
 
-			<div className="flex flex-col gap-3 border-b-2 pb-4">
+			<div className="flex flex-col gap-3 border-b-[1px] pb-4">
 				<div className="flex justify-between font-bold text-lg text-gray-700">
 					<div className="">Total Payable</div>
 					<div className="">&#8377; 95</div>
@@ -53,7 +53,7 @@ function SideBlock() {
 				</div>
 			</div>
 
-			<div className="text-xs flex flex-col gap-3 font-semibold border-b-2 pb-4">
+			<div className="text-xs flex flex-col gap-3 font-semibold border-b-[1px] pb-4">
 				<div>
 					You will get exclusive access to insider only deals, personalised
 					offers and updates. You can unsubscribe anytime.
@@ -63,10 +63,10 @@ function SideBlock() {
 						type="checkbox"
 						id="checkbox1"
 						name="checkbox1"
-						value=""
+						// value=""
 						className="accent-purple-600"
 					/>
-					<label for="checkbox1">
+					<label htmlFor="checkbox1">
 						Do not send me offers on email and updates on WhatsApp
 					</label>
 				</div>

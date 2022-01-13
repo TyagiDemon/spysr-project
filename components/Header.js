@@ -1,6 +1,6 @@
 function Header() {
   return (
-		<div className="flex px-16 py-4 items-center border-b-2">
+		<div className="flex px-16 py-4 items-center border-b-[1px] sticky top-0 w-full z-50 bg-white">
 			<div className="flex flex-1 items-center gap-16 text-xs text-gray-500">
 				<div className="text-purple-600 font-semibold text-2xl">headout</div>
 				<div className="flex items-center gap-4">
