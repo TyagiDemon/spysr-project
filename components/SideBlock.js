@@ -7,7 +7,7 @@ function SideBlock() {
 						The London Pass - Unlimited Attractions Pass
 					</div>
 					<div>
-						<img src="images/pic1.jpg" className="contain rounded-md" />
+						<img alt="" src="images/pic1.jpg" className="contain rounded-md" />
 					</div>
 				</div>
 				<div className="flex justify-between font-semibold text-sm">
@@ -74,8 +74,8 @@ function SideBlock() {
 
 			<div>
 				<div className="text-xs font-semibold">
-					By clicking 'Confirm &#38; Pay' you agree to our general terms and
-					privacy policy
+					By clicking &apos;Confirm &#38; Pay&apos; you agree to our general
+					terms and privacy policy
 				</div>
 				<div className="text-xl font-semibold text-white bg-purple-600 text-center py-2 rounded-md mt-8">
 					Confirm &#38; Pay

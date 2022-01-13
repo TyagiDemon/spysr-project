@@ -11,7 +11,7 @@ export default function Home() {
 			<Head>
 				<script
 					src="https://kit.fontawesome.com/ecc785940a.js"
-					crossorigin="anonymous"
+					crossOrigin="anonymous"
 				></script>
 			</Head>
 			<Header />

@@ -2,7 +2,7 @@ function AboutUs() {
 	return (
 		<div className="p-36 border-b-[2px]">
 			<div className="text-2xl font-bold font-sans">
-				We've served 9 million+ guests and we are here for you
+				We&apos;ve served 9 million+ guests and we are here for you
 			</div>
 			<div className="flex justify-between mt-8 gap-8">
 				<div>

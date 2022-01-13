@@ -69,7 +69,7 @@ function Form() {
 					<div>
 						<div className="font-semibold">Email</div>
 						<div className="text-xs font-[550] my-2 text-gray-600">
-							We'll send your tickets here
+							We&apos;ll send your tickets here
 						</div>
 						<div>
 							<input className="w-full outline outline-1 outline-gray-300 p-4 rounded-md focus:outline-black" />
@@ -78,7 +78,7 @@ function Form() {
 					<div>
 						<div className="font-semibold">Confirm Email</div>
 						<div className="text-xs font-[550] my-2 text-gray-600">
-							Just to ensure we've got this right
+							Just to ensure we&apos;ve got this right
 						</div>
 						<div>
 							<input className="w-full outline outline-1 outline-gray-300 p-4 rounded-md focus:outline-black" />
@@ -127,7 +127,8 @@ function Form() {
 								Your card details are secured using 2048-bit SSL encryption.
 							</div>
 							<div>
-								<img
+                <img
+                  alt=""
 									src="https://cdn-imgix.headout.com/assets/images/checkout/security-compliance-v1.svg?auto=format&h=16&w=&crop=faces&fit=min&fm=jpeg&q=70"
 									className="bg-contain w-[250px]"
 								/>
@@ -165,8 +166,8 @@ function Form() {
 
 				<div>
 					<div className="text-xs font-semibold mt-4">
-						By clicking 'Confirm &#38; Pay' you agree to our general terms and
-						privacy policy
+						By clicking &apos;Confirm &#38; Pay&apos; you agree to our general
+						terms and privacy policy
 					</div>
 					<div className="text-xl w-1/2 font-semibold text-white bg-purple-600 text-center py-2 rounded-md mt-8">
 						Confirm &#38; Pay
