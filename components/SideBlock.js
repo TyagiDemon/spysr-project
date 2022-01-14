@@ -27,7 +27,7 @@ function SideBlock() {
 
 	return (
 		<div
-			className={`flex flex-col w-full mx-auto lg:max-w-[33%] lg:border-[1px] rounded-md lg:p-5 text-gray-600 gap-3 mt-8 h-min sticky -top-[100px]`}
+			className={`flex flex-col w-full mx-auto lg:max-w-[33%] lg:border-[1px] rounded-md lg:p-5 text-gray-600 gap-3 mt-8 h-min lg:sticky lg:-top-[100px]`}
 		>
 			<div className="gap-3 flex-col flex border-b-[1px] pb-4">
 				<div className="flex items-center gap-2">
