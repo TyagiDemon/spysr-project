@@ -1,8 +1,8 @@
 function Form() {
 	return (
 		<div className="flex-1 mt-8 text-gray-800 pb-5">
-			<div>
-				<div className="text-2xl font-bold">Guests</div>
+			<div className="hidden lg:block">
+				<div className="text-xl lg:text-2xl font-bold">Guests</div>
 
 				<div className="mt-8 grid grid-cols-3 w-full items-center">
 					<div>
@@ -41,43 +41,45 @@ function Form() {
 
 			<div className="mt-14">
 				<div>
-					<div className="text-2xl font-semibold">Enter your details</div>
+					<div className="text-xl lg:text-2xl font-semibold">
+						Enter your details
+					</div>
 					<div className="text-sm font-[550]">
 						Booking for a friend? Enter their details
 					</div>
 				</div>
 
-				<div className="w-full grid grid-cols-2 gap-6 mt-8">
-					<div>
+				<div className="w-full lg:grid lg:grid-cols-2 gap-6 mt-4">
+					<div className="mt-6">
 						<div className="font-semibold">Full Name</div>
-						<div className="text-xs font-[550] my-2 text-gray-600">
+						<div className="text-xs font-[550] my-2 text-gray-600 tracking-tight">
 							Same as on your ID
 						</div>
 						<div>
 							<input className="w-full outline outline-1 outline-gray-300 p-4 rounded-md focus:outline-black" />
 						</div>
 					</div>
-					<div>
+					<div className="mt-6">
 						<div className="font-semibold">Mobile Number</div>
-						<div className="text-xs font-[550] my-2 text-gray-600">
+						<div className="text-xs font-[550] my-2 text-gray-600 tracking-tight">
 							We may reach out for booking updates here over SMS/Whatsapp
 						</div>
 						<div>
 							<input className="w-full outline outline-1 outline-gray-300 p-4 rounded-md focus:outline-black" />
 						</div>
 					</div>
-					<div>
+					<div className="mt-6">
 						<div className="font-semibold">Email</div>
-						<div className="text-xs font-[550] my-2 text-gray-600">
+						<div className="text-xs font-[550] my-2 text-gray-600 tracking-tight">
 							We&apos;ll send your tickets here
 						</div>
 						<div>
 							<input className="w-full outline outline-1 outline-gray-300 p-4 rounded-md focus:outline-black" />
 						</div>
 					</div>
-					<div>
+					<div className="mt-6">
 						<div className="font-semibold">Confirm Email</div>
-						<div className="text-xs font-[550] my-2 text-gray-600">
+						<div className="text-xs font-[550] my-2 text-gray-600 tracking-tight">
 							Just to ensure we&apos;ve got this right
 						</div>
 						<div>
@@ -92,7 +94,9 @@ function Form() {
 			</div>
 
 			<div className="mt-14">
-				<div className="text-2xl font-bold">Enter payment details</div>
+				<div className="text-xl lg:text-2xl font-bold">
+					Enter payment details
+				</div>
 				<div className="flex mt-8">
 					<div className="flex-1 flex flex-col gap-8">
 						<div>
@@ -127,8 +131,8 @@ function Form() {
 								Your card details are secured using 2048-bit SSL encryption.
 							</div>
 							<div>
-                <img
-                  alt=""
+								<img
+									alt=""
 									src="https://cdn-imgix.headout.com/assets/images/checkout/security-compliance-v1.svg?auto=format&h=16&w=&crop=faces&fit=min&fm=jpeg&q=70"
 									className="bg-contain w-[250px]"
 								/>
@@ -136,7 +140,7 @@ function Form() {
 						</div>
 					</div>
 
-					<div className="flex-1"></div>
+					<div className="lg:flex-1"></div>
 				</div>
 
 				<div className="flex flex-col gap-3 border-y-[1px] py-8 mt-8">
@@ -169,7 +173,7 @@ function Form() {
 						By clicking &apos;Confirm &#38; Pay&apos; you agree to our general
 						terms and privacy policy
 					</div>
-					<div className="text-xl w-1/2 font-semibold text-white bg-purple-600 text-center py-2 rounded-md mt-8">
+					<div id="formButton" className="hidden lg:block text-xl w-1/2 font-semibold text-white bg-purple-600 text-center py-2 rounded-md mt-8">
 						Confirm &#38; Pay
 					</div>
 				</div>

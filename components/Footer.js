@@ -1,6 +1,6 @@
 function Footer() {
   return (
-		<div className="mx-36 pt-16">
+		<div className="mx-36 pt-16 hidden lg:block">
 			<div className="grid grid-cols-5 border-b-[1px] pb-16">
 				<div className="col-span-2 pr-24 font-semibold text-sm">
 					<div className="text-purple-600 text-2xl">headout</div>

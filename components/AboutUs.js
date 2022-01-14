@@ -1,10 +1,10 @@
 function AboutUs() {
 	return (
-		<div className="p-36 border-b-[2px]">
-			<div className="text-2xl font-bold font-sans">
+		<div className="lg:p-36 p-6 pb-16 border-b-[2px]">
+			<div className="text-xl lg:text-2xl font-bold font-sans">
 				We&apos;ve served 9 million+ guests and we are here for you
 			</div>
-			<div className="flex justify-between mt-8 gap-8">
+			<div className="grid grid-cols-2 lg:flex justify-between mt-8 gap-8">
 				<div>
 					<div></div>
 					<div className="text-xl font-bold mb-2">9 million +</div>

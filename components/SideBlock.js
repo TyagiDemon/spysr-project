@@ -1,6 +1,34 @@
+import { useEffect, useState } from "react";
+
 function SideBlock() {
+	// const [scrollHeight, setScrollHeight] = useState(0);
+	// const [formButtonDepth, setFormButtonDepth] = useState(0);
+	// const [sideBlockButton, setSideBlockButton] = useState("0");
+
+	// const getScrollHeight = () => {
+	// 	setScrollHeight(window.pageYOffset);
+	// };
+
+	// useEffect(() => {
+	// 	// setFormButtonDepth(document.getElementById("formButton").offsetTop);
+	// 	setSideBlockButton(
+	// 		(document.getElementById("sideBlockButton").offsetTop - window.innerHeight).toString()
+	// 	);
+	// 	console.log(window.innerHeight);
+	// 	console.log(document.getElementById("sideBlockButton").offsetTop);
+
+	// 	// getScrollHeight();
+
+	// 	// window.onscroll = function () {
+	// 	// 	getScrollHeight();
+	// 	// };
+	// }, []);
+	// console.log(sideBlockButton);
+
 	return (
-		<div className="flex flex-col max-w-[33%] border-[1px] rounded-md p-5 text-gray-600 gap-3 mt-8 sticky top-0 h-min">
+		<div
+			className={`flex flex-col w-full mx-auto lg:max-w-[33%] lg:border-[1px] rounded-md lg:p-5 text-gray-600 gap-3 mt-8 h-min sticky -top-[100px]`}
+		>
 			<div className="gap-3 flex-col flex border-b-[1px] pb-4">
 				<div className="flex items-center gap-2">
 					<div className="text-lg font-semibold text-gray-800 tracking-tight">
@@ -53,7 +81,7 @@ function SideBlock() {
 				</div>
 			</div>
 
-			<div className="text-xs flex flex-col gap-3 font-semibold border-b-[1px] pb-4">
+			<div className="hidden text-xs lg:flex lg:flex-col gap-3 font-semibold border-b-[1px] pb-4">
 				<div>
 					You will get exclusive access to insider only deals, personalised
 					offers and updates. You can unsubscribe anytime.
@@ -72,12 +100,15 @@ function SideBlock() {
 				</div>
 			</div>
 
-			<div>
+			<div className="hidden lg:block">
 				<div className="text-xs font-semibold">
 					By clicking &apos;Confirm &#38; Pay&apos; you agree to our general
 					terms and privacy policy
 				</div>
-				<div className="text-xl font-semibold text-white bg-purple-600 text-center py-2 rounded-md mt-8">
+				<div
+					id="sideBlockButton"
+					className="text-xl font-semibold text-white bg-purple-600 text-center py-2 rounded-md mt-8"
+				>
 					Confirm &#38; Pay
 				</div>
 			</div>
