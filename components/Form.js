@@ -1,8 +1,31 @@
+import { useState, useEffect, useContext } from "react";
+import { getSession } from "next-auth/react";
+import GuestContext from "../contexts/guestContext";
+import Router from "next/router";
+
 function Form() {
+	const { guest, setGuest } = useContext(GuestContext);
+	const [user, setUser] = useState(null);
+
+	useEffect(async () => {
+		const session = await getSession();
+
+		if (session) {
+			setUser(session.user);
+		} else {
+			setUser(null);
+		}
+	}, []);
+
 	return (
 		<div className="flex-1 mt-8 text-gray-800 pb-5">
 			<div className="hidden lg:block">
 				<div className="text-xl lg:text-2xl font-bold">Guests</div>
+				{guest.child + guest.adult <= 0 && (
+					<div className="text-[#ec1943] font-bold mt-2">
+						Please select at least one ticket to continue
+					</div>
+				)}
 
 				<div className="mt-8 grid grid-cols-3 w-full items-center">
 					<div>
@@ -10,15 +33,30 @@ function Form() {
 						<div className="text-xs font-semibold mt-2">Above 16 yrs</div>
 					</div>
 					<div className="flex items-center gap-6 justify-center">
-						<div className="flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-purple-600 font-extralight">
+						<div
+							className="flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-purple-600 font-extralight cursor-pointer"
+							onClick={() => {
+								if (guest.adult <= 0) {
+									return;
+								}
+								setGuest({ ...guest, adult: guest.adult - 1 });
+							}}
+						>
 							<i className="fas fa-minus"></i>
 						</div>
-						<div className="">1</div>
-						<div className="flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-purple-600 font-extralight">
+						<div className="">{guest.adult}</div>
+						<div
+							className="flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-purple-600 font-extralight cursor-pointer"
+							onClick={() => {
+								setGuest({ ...guest, adult: guest.adult + 1 });
+							}}
+						>
 							<i className="fas fa-plus"></i>
 						</div>
 					</div>
-					<div className="font-bold text-lg text-right">&#8377; 95</div>
+					<div className="font-bold text-lg text-right">
+						&#8377; {guest.adult * 95}
+					</div>
 				</div>
 
 				<div className="mt-8 grid grid-cols-3 w-full items-center">
@@ -27,15 +65,30 @@ function Form() {
 						<div className="text-xs font-semibold mt-2">5 to 15 yrs</div>
 					</div>
 					<div className="flex items-center gap-6 justify-center">
-						<div className="flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-purple-600 font-extralight">
+						<div
+							className="flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-purple-600 font-extralight cursor-pointer"
+							onClick={() => {
+								if (guest.child <= 0) {
+									return;
+								}
+								setGuest({ ...guest, child: guest.child - 1 });
+							}}
+						>
 							<i className="fas fa-minus"></i>
 						</div>
-						<div className="">1</div>
-						<div className="flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-purple-600 font-extralight">
+						<div className="">{guest.child}</div>
+						<div
+							className="flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-purple-600 font-extralight cursor-pointer"
+							onClick={() => {
+								setGuest({ ...guest, child: guest.child + 1 });
+							}}
+						>
 							<i className="fas fa-plus"></i>
 						</div>
 					</div>
-					<div className="font-bold text-lg text-right">&#8377; 95</div>
+					<div className="font-bold text-lg text-right">
+						&#8377; {guest.child * 70}
+					</div>
 				</div>
 			</div>
 
@@ -145,7 +198,7 @@ function Form() {
 
 				<div className="flex flex-col gap-3 border-y-[1px] py-8 mt-8">
 					<div className="font-semibold text-xl text-gray-700">
-						Total Payable: &#8377; 95
+						Total Payable: &#8377; {guest.adult * 95 + guest.child * 70}
 					</div>
 				</div>
 
@@ -173,7 +226,29 @@ function Form() {
 						By clicking &apos;Confirm &#38; Pay&apos; you agree to our general
 						terms and privacy policy
 					</div>
-					<div id="formButton" className="hidden lg:block text-xl w-1/2 font-semibold text-white bg-purple-600 text-center py-2 rounded-md mt-8">
+					<div
+						id="formButton"
+						className="hidden lg:block text-xl w-1/2 font-semibold text-white bg-purple-600 text-center py-2 rounded-md mt-8 cursor-pointer"
+						onClick={() => {
+							if (!user) {
+								return alert("Please sign in to continue");
+							}
+							if (guest.child + guest.adult <= 0) {
+								return alert("Please select at least one ticket to continue");
+							}
+							if (!localStorage.getItem(user.email)) {
+								localStorage.setItem(
+									user.email,
+									JSON.stringify({ allOrders: [guest] })
+								);
+							} else {
+								let arr = JSON.parse(localStorage.getItem(user.email));
+								arr.allOrders.push(guest);
+								localStorage.setItem(user.email, JSON.stringify(arr));
+							}
+							Router.push("/dashboard");
+						}}
+					>
 						Confirm &#38; Pay
 					</div>
 				</div>

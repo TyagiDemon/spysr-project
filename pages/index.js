@@ -8,7 +8,7 @@ import SmallScreenBottomButton from "../components/SmallScreenBottomButton";
 import Head from "next/head";
 
 export default function Home() {
-  return (
+	return (
 		<div className="pb-16 text-[#444444] w-full">
 			<Head>
 				<script

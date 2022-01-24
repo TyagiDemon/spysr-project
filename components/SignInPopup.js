@@ -1,4 +1,9 @@
-function SignInPopup({onClick}) {
+import { signIn } from "next-auth/react";
+import { useContext } from "react";
+import GuestContext from "../contexts/guestContext";
+
+function SignInPopup({ onClick }) {
+	const { guest, setGuest } = useContext(GuestContext);
 	return (
 		<div className="bg-white w-1/3 mx-auto md:mt-28 p-6 rounded-lg text-[#444444]">
 			<div className="font-bold text-xl flex justify-between items-center">
@@ -11,10 +16,22 @@ function SignInPopup({onClick}) {
 				Sign in to get cashback as credits, insider-only offers and exclusive
 				deals
 			</div>
-			<div className="text-center py-2 mt-3 rounded-md text-sm font-semibold border-[1px] cursor-pointer">
+			<div
+				className="text-center py-2 mt-3 rounded-md text-sm font-semibold border-[1px] cursor-pointer hover:bg-[#1771ed] hover:text-white transition"
+				onClick={() => {
+					localStorage.setItem("temp", JSON.stringify(guest));
+					signIn("facebook");
+				}}
+			>
 				Continue with Facebook
 			</div>
-			<div className="text-center py-2 mt-3 rounded-md text-sm font-semibold border-[1px] cursor-pointer">
+			<div
+				className="text-center py-2 mt-3 rounded-md text-sm font-semibold border-[1px] cursor-pointer hover:bg-[#ff2525] hover:text-white transition"
+				onClick={() => {
+					localStorage.setItem("temp", JSON.stringify(guest));
+					signIn("google");
+				}}
+			>
 				Continue with Google
 			</div>
 			<div className="my-6 text-center text-xs">OR</div>

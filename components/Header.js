@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getSession, signOut } from "next-auth/react";
 import SignInPopup from "./SignInPopup";
 import Modal from "@mui/material/Modal";
 
@@ -6,7 +7,18 @@ function Header() {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-	
+	const [user, setUser] = useState(null);
+
+	useEffect(async () => {
+		const session = await getSession();
+		console.log(session);
+		if (session) {
+			setUser(session.user);
+		} else {
+			setUser(null);
+		}
+	}, []);
+
 	return (
 		<>
 			<Modal
@@ -33,9 +45,24 @@ function Header() {
 						</div>
 						<div>Help</div>
 					</div>
-					<div className="outline outline-1 px-2 py-1 rounded-sm outline-slate-700 hover:bg-purple-600 hover:text-white cursor-pointer" onClick={handleOpen}>
-						Sign in
-					</div>
+					{!user && (
+						<div
+							className="outline outline-1 px-2 py-1 rounded-sm outline-slate-700 hover:bg-purple-600 hover:text-white cursor-pointer"
+							onClick={handleOpen}
+						>
+							Sign in
+						</div>
+					)}
+					{user && (
+						<div className="flex items-center gap-2">
+							<img src={user.image} className="h-6 w-6 rounded-full" />
+							<div>{user.name}</div>
+							<i
+								onClick={() => signOut()}
+								className="fas fa-sign-out-alt cursor-pointer"
+							></i>
+						</div>
+					)}
 				</div>
 			</div>
 		</>

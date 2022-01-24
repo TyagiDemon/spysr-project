@@ -1,29 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { getSession } from "next-auth/react";
+import GuestContext from "../contexts/guestContext";
+import Router from "next/router";
 
 function SideBlock() {
-	// const [scrollHeight, setScrollHeight] = useState(0);
-	// const [formButtonDepth, setFormButtonDepth] = useState(0);
-	// const [sideBlockButton, setSideBlockButton] = useState("0");
+	const { guest, setGuest } = useContext(GuestContext);
+	const [user, setUser] = useState(null);
 
-	// const getScrollHeight = () => {
-	// 	setScrollHeight(window.pageYOffset);
-	// };
+	useEffect(async () => {
+		const session = await getSession();
 
-	// useEffect(() => {
-	// 	// setFormButtonDepth(document.getElementById("formButton").offsetTop);
-	// 	setSideBlockButton(
-	// 		(document.getElementById("sideBlockButton").offsetTop - window.innerHeight).toString()
-	// 	);
-	// 	console.log(window.innerHeight);
-	// 	console.log(document.getElementById("sideBlockButton").offsetTop);
-
-	// 	// getScrollHeight();
-
-	// 	// window.onscroll = function () {
-	// 	// 	getScrollHeight();
-	// 	// };
-	// }, []);
-	// console.log(sideBlockButton);
+		if (session) {
+			setUser(session.user);
+		} else {
+			setUser(null);
+		}
+	}, []);
 
 	return (
 		<div
@@ -61,15 +53,33 @@ function SideBlock() {
 				</div>
 			</div>
 
-			<div className="flex justify-between font-semibold border-b-[1px] pb-4">
-				<div className="">1 Adult</div>
-				<div className="">&#8377; 95</div>
-			</div>
+			{guest.adult + guest.child <= 0 && (
+				<div className="flex justify-between font-semibold">
+					<div className="">No ticket selected</div>
+					<div className="">&#8377; 0</div>
+				</div>
+			)}
+			{guest.adult > 0 && (
+				<div className="flex justify-between font-semibold">
+					<div className="">
+						{guest.adult} Adult{guest.adult > 1 && "s"}
+					</div>
+					<div className="">&#8377; {guest.adult * 95}</div>
+				</div>
+			)}
+			{guest.child > 0 && (
+				<div className="flex justify-between font-semibold">
+					<div className="">
+						{guest.child} Child{guest.child > 1 && "ren"}
+					</div>
+					<div className="">&#8377; {guest.adult * 70}</div>
+				</div>
+			)}
 
-			<div className="flex flex-col gap-3 border-b-[1px] pb-4">
+			<div className="flex flex-col gap-3 border-y-[1px] pb-4 pt-2">
 				<div className="flex justify-between font-bold text-lg text-gray-700">
 					<div className="">Total Payable</div>
-					<div className="">&#8377; 95</div>
+					<div className="">&#8377; {guest.adult * 95 + guest.child * 70}</div>
 				</div>
 				<div className="flex gap-2 items-center">
 					<div className="font-semibold">
@@ -107,7 +117,26 @@ function SideBlock() {
 				</div>
 				<div
 					id="sideBlockButton"
-					className="text-xl font-semibold text-white bg-purple-600 text-center py-2 rounded-md mt-8"
+					className="text-xl font-semibold text-white bg-purple-600 text-center py-2 rounded-md mt-8 cursor-pointer"
+					onClick={() => {
+						if (!user) {
+							return alert("Please sign in to continue");
+						}
+						if (guest.child + guest.adult <= 0) {
+							return alert("Please select at least one ticket to continue");
+						}
+						if (!localStorage.getItem(user.email)) {
+							localStorage.setItem(
+								user.email,
+								JSON.stringify({ allOrders: [guest] })
+							);
+						} else {
+							let arr = JSON.parse(localStorage.getItem(user.email));
+							arr.allOrders.push(guest);
+							localStorage.setItem(user.email, JSON.stringify(arr));
+						}
+						Router.push("/dashboard");
+					}}
 				>
 					Confirm &#38; Pay
 				</div>
