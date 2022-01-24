@@ -19,7 +19,7 @@ function SignInPopup({ onClick }) {
 			<div
 				className="text-center py-2 mt-3 rounded-md text-sm font-semibold border-[1px] cursor-pointer hover:bg-[#1771ed] hover:text-white transition"
 				onClick={() => {
-					localStorage.setItem("temp", JSON.stringify(guest));
+					// localStorage.setItem("temp", JSON.stringify(guest));
 					signIn("facebook");
 				}}
 			>
@@ -28,7 +28,7 @@ function SignInPopup({ onClick }) {
 			<div
 				className="text-center py-2 mt-3 rounded-md text-sm font-semibold border-[1px] cursor-pointer hover:bg-[#ff2525] hover:text-white transition"
 				onClick={() => {
-					localStorage.setItem("temp", JSON.stringify(guest));
+					// localStorage.setItem("temp", JSON.stringify(guest));
 					signIn("google");
 				}}
 			>
