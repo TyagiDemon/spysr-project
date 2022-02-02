@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import {
 	addDays,
 	addMonths,
+	compareAsc,
 	endOfMonth,
 	endOfWeek,
 	format,
@@ -17,6 +18,7 @@ function Calendar() {
 	const [state, setState] = useState({
 		currentMonth: new Date(),
 		selectedDate: new Date(),
+		currentDate: new Date(),
 	});
 
 	const { date, setDate } = useContext(AppContext);
@@ -59,8 +61,7 @@ function Calendar() {
 	}
 
 	function renderCells() {
-		const { currentMonth, selectedDate } = state;
-		const monthStart = startOfMonth(currentMonth);
+		const monthStart = startOfMonth(state.currentMonth);
 		const monthEnd = endOfMonth(monthStart);
 		const startDate = startOfWeek(monthStart);
 		const endDate = endOfWeek(monthEnd);
@@ -79,16 +80,16 @@ function Calendar() {
 				days.push(
 					<div
 						className={`col ${
-							!isSameMonth(day, monthStart) || day < selectedDate
+							!isSameMonth(cloneDay, monthStart) || compareAsc(state.currentDate, cloneDay) == 1
 								? "disabled"
-								: isSameDay(day, selectedDate)
-								? "selected"
+								: isSameDay(cloneDay, date)
+								? "selected bg-gradient-to-br from-blue-300 via-white to-blue-200"
 								: ""
 						}`}
-						key={day}
+						key={cloneDay}
 						onClick={() => {
 							setDate(cloneDay);
-							setState({ ...state, selectedDate: day });
+							setState({ ...state, selectedDate: cloneDay });
 						}}
 					>
 						<div className="text-center px-1 cursor-pointer">
@@ -111,15 +112,11 @@ function Calendar() {
 	}
 
 	const nextMonth = () => {
-		setState(...state, {
-			currentMonth: addMonths(state.currentMonth, 1),
-		});
+		setState({ ...state, currentMonth: addMonths(state.currentMonth, 1) });
 	};
 
 	const prevMonth = () => {
-		setState(...state, {
-			currentMonth: subMonths(state.currentMonth, 1),
-		});
+		setState({ ...state, currentMonth: subMonths(state.currentMonth, 1) });
 	};
 
 	return (
