@@ -1,13 +1,15 @@
 import { SessionProvider } from "next-auth/react";
-import GuestContext from "../contexts/guestContext";
 import { useState, useEffect } from "react";
 import "../styles/globals.css";
+import { format } from "date-fns";
+import AppContext from "../contexts/AppContext";
 
 export default function App({
 	Component,
 	pageProps: { session, ...pageProps },
 }) {
 	const [guest, setGuest] = useState({ adult: 1, child: 0 });
+	const [date, setDate] = useState();
 
 	useEffect(() => {
 		if (localStorage.getItem("temp")) {
@@ -17,9 +19,9 @@ export default function App({
 
 	return (
 		<SessionProvider session={session}>
-			<GuestContext.Provider value={{ guest, setGuest }}>
+			<AppContext.Provider value={{ guest, setGuest, date, setDate }}>
 				<Component {...pageProps} />
-			</GuestContext.Provider>
+			</AppContext.Provider>
 		</SessionProvider>
 	);
 }
