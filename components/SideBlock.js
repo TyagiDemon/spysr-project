@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { getSession } from "next-auth/react";
-import GuestContext from "../contexts/guestContext";
+import AppContext from "../contexts/AppContext";
 import Router from "next/router";
 
 function SideBlock() {
-	const { guest, setGuest } = useContext(GuestContext);
+	const { guest, setGuest } = useContext(AppContext);
 	const [user, setUser] = useState(null);
 
 	useEffect(async () => {

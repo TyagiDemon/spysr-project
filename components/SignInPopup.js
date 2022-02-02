@@ -1,9 +1,9 @@
 import { signIn } from "next-auth/react";
 import { useContext } from "react";
-import GuestContext from "../contexts/guestContext";
+import AppContext from "../contexts/AppContext";
 
 function SignInPopup({ onClick }) {
-	const { guest, setGuest } = useContext(GuestContext);
+	const { guest, setGuest } = useContext(AppContext);
 	return (
 		<div className="bg-white w-1/3 mx-auto md:mt-28 p-6 rounded-lg text-[#444444]">
 			<div className="font-bold text-xl flex justify-between items-center">
