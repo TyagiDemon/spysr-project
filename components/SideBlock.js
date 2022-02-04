@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import AppContext from "../contexts/AppContext";
+import { format } from "date-fns";
+import { enGB } from "date-fns/locale";
 
 function SideBlock({ onClickConfirmButton }) {
-	const { guest } = useContext(AppContext);
+	const { guest, date } = useContext(AppContext);
 
 	return (
 		<div
@@ -18,7 +20,13 @@ function SideBlock({ onClickConfirmButton }) {
 					</div>
 				</div>
 				<div className="flex justify-between font-semibold text-sm">
-					<div className="">Mon, 21 Feb</div>
+					<div className="">
+						{date ? (
+							format(date, "MMM dd", { locale: enGB })
+						) : (
+							<a href="/selectDate" className="text-blue-600">Select a date</a>
+						)}
+					</div>
 					<div className="text-cyan-600">Edit</div>
 				</div>
 				<div className="flex justify-between font-semibold text-sm">
