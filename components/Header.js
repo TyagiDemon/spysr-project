@@ -1,23 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getSession, signOut } from "next-auth/react";
 import SignInPopup from "./SignInPopup";
 import Modal from "@mui/material/Modal";
+import AppContext from "../contexts/AppContext";
 
 function Header() {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-	const [user, setUser] = useState(null);
-
-	useEffect(async () => {
-		const session = await getSession();
-		console.log(session);
-		if (session) {
-			setUser(session.user);
-		} else {
-			setUser(null);
-		}
-	}, []);
+	const { user } = useContext(AppContext);
 
 	return (
 		<>

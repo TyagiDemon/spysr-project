@@ -1,21 +1,8 @@
-import { useState, useEffect, useContext } from "react";
-import { getSession } from "next-auth/react";
+import { useContext } from "react";
 import AppContext from "../contexts/AppContext";
-import Router from "next/router";
 
-function Form() {
+function Form({onClickConfirmButton}) {
 	const { guest, setGuest } = useContext(AppContext);
-	const [user, setUser] = useState(null);
-
-	useEffect(async () => {
-		const session = await getSession();
-
-		if (session) {
-			setUser(session.user);
-		} else {
-			setUser(null);
-		}
-	}, []);
 
 	return (
 		<div className="flex-1 mt-8 text-gray-800 pb-5">
@@ -228,26 +215,9 @@ function Form() {
 					</div>
 					<div
 						id="formButton"
+						key="confirmButton"
 						className="hidden lg:block text-xl w-1/2 font-semibold text-white bg-purple-600 text-center py-2 rounded-md mt-8 cursor-pointer"
-						onClick={() => {
-							if (!user) {
-								return alert("Please sign in to continue");
-							}
-							if (guest.child + guest.adult <= 0) {
-								return alert("Please select at least one ticket to continue");
-							}
-							if (!localStorage.getItem(user.email)) {
-								localStorage.setItem(
-									user.email,
-									JSON.stringify({ allOrders: [guest] })
-								);
-							} else {
-								let arr = JSON.parse(localStorage.getItem(user.email));
-								arr.allOrders.push(guest);
-								localStorage.setItem(user.email, JSON.stringify(arr));
-							}
-							Router.push("/dashboard");
-						}}
+						onClick={onClickConfirmButton}
 					>
 						Confirm &#38; Pay
 					</div>

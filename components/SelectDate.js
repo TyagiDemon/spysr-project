@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { format } from "date-fns";
 import { enGB } from "date-fns/locale";
 import Modal from "@mui/material/Modal";
@@ -7,14 +7,29 @@ import Calendar from "./Calendar";
 import AppContext from "../contexts/AppContext";
 
 function SelectDate() {
-	const {date, setDate} = useContext(AppContext);
+	const { date } = useContext(AppContext);
 	const [open, setOpen] = useState(false);
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
 
-	useEffect(() => {
-		handleClose();
-	}, [date]);
+	let x = new Array(12);
+
+	for (var i = 0; i < x.length; i++) {
+		x[i] = new Array(31).fill(50);
+	}
+
+	const [seats, setSeats] = useState(x);
+
+	const handleOpen = () => {
+		const data = localStorage.getItem("seats");
+		if (data) {
+			setSeats(JSON.parse(data));
+		}
+		setOpen(true);
+	};
+	const handleClose = () => {
+		setOpen(false);
+		localStorage.setItem("seats", JSON.stringify(seats));
+	};
+	
 	return (
 		<div className="lg:mx-36 w-full lg:w-[60%] py-8">
 			<div>
@@ -71,8 +86,8 @@ function SelectDate() {
 				</div>
 			</div>
 			<Modal open={open} onClose={handleClose}>
-				<div className="bg-white w-[95%] lg:w-[50%] z-50 mx-auto mt-10 p-4 rounded-md">
-					<Calendar />
+				<div className="bg-white w-[95%] lg:w-[50%] z-50 mx-auto mt-10 p-1 rounded-md">
+					<Calendar seats={seats} handleClose={handleClose} />
 				</div>
 			</Modal>
 

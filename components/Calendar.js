@@ -11,10 +11,12 @@ import {
 	startOfMonth,
 	startOfWeek,
 	subMonths,
+	getMonth,
+	getDate,
 } from "date-fns";
 import AppContext from "../contexts/AppContext";
 
-function Calendar() {
+function Calendar({ seats, handleClose }) {
 	const [state, setState] = useState({
 		currentMonth: new Date(),
 		selectedDate: new Date(),
@@ -77,10 +79,13 @@ function Calendar() {
 			for (let i = 0; i < 7; i++) {
 				formattedDate = format(day, dateFormat);
 				const cloneDay = day;
+
 				days.push(
 					<div
 						className={`col ${
-							!isSameMonth(cloneDay, monthStart) || compareAsc(state.currentDate, cloneDay) == 1
+							!isSameMonth(cloneDay, monthStart) ||
+							compareAsc(state.currentDate, cloneDay) == 1 ||
+							seats[getMonth(cloneDay)][getDate(cloneDay)] <= 0
 								? "disabled"
 								: isSameDay(cloneDay, date)
 								? "selected bg-gradient-to-br from-blue-300 via-white to-blue-200"
@@ -90,12 +95,19 @@ function Calendar() {
 						onClick={() => {
 							setDate(cloneDay);
 							setState({ ...state, selectedDate: cloneDay });
+							handleClose();
 						}}
 					>
 						<div className="text-center px-1 cursor-pointer">
 							<div className="number my-4">{formattedDate}</div>
 							{/* <div className="bg">{formattedDate}</div> */}
-							<div className="text-xs">100 seats left</div>
+							<div className="text-xs">
+								{seats[getMonth(cloneDay)][getDate(cloneDay)] > 0
+									? `${
+											seats[getMonth(cloneDay)][getDate(cloneDay)]
+									  } seats available`
+									: "No seats available"}
+							</div>
 						</div>
 					</div>
 				);
