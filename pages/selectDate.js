@@ -1,9 +1,6 @@
-import Header from "../components/Header";
 import SelectDate from "../components/SelectDate";
 import AboutUs from "../components/AboutUs";
 import Footer from "../components/Footer";
-import SmallScreenHeader from "../components/SmallScreenHeader";
-import SmallScreenBottomButton from "../components/SmallScreenBottomButton";
 import Head from "next/head";
 
 export default function selectDate() {
@@ -15,8 +12,6 @@ export default function selectDate() {
 					crossOrigin="anonymous"
 				></script>
 			</Head>
-			<Header />
-			<SmallScreenHeader />
 			<SelectDate />
 			<AboutUs />
 			<Footer />

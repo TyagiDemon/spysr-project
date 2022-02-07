@@ -35,9 +35,12 @@ export default NextAuth({
 			}
 			return token;
 		},
-		redirect: async (url, _baseUrl) => {
-			if (url === "/profile") {
-				return Promise.resolve("/");
+		redirect: async ({ url, _baseUrl }) => {
+			if (url === "https://spysr-project.vercel.app/dashboard") {
+				return Promise.resolve("/dashboard");
+			}
+			if (url === "https://spysr-project.vercel.app/selectDate") {
+				return Promise.resolve("/selectDate");
 			}
 			return Promise.resolve("/");
 		},

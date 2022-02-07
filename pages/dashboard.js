@@ -1,11 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import { getSession } from "next-auth/react";
+import AppContext from "../contexts/AppContext";
 
-export default function dashboard({ user }) {
+export default function dashboard() {
 	const [orderList, setOrderList] = useState(null);
-
+	const { user } = useContext(AppContext);
 	useEffect(() => {
-		if (!localStorage.getItem(user.email)) {
+		if (!user || !localStorage.getItem(user.email)) {
 			return;
 		}
 		setOrderList(JSON.parse(localStorage.getItem(user.email)).allOrders);
@@ -13,7 +14,7 @@ export default function dashboard({ user }) {
 
 	return (
 		<div className="lg:p-16 p-8">
-			<div className="font-bold text-2xl">Welcome {user.name},</div>
+			<div className="font-bold text-2xl">Welcome,</div>
 			<div>
 				<div className="text-gray-600 font-semibold text-xl my-4">
 					Your previous orders
@@ -49,16 +50,16 @@ export default function dashboard({ user }) {
 	);
 }
 
-export async function getServerSideProps(context) {
-	const session = await getSession(context);
-	if (!session) {
-		context.res.writeHead(302, { Location: "/" });
-		context.res.end();
-		return {};
-	}
-	return {
-		props: {
-			user: session.user,
-		},
-	};
-}
+// export async function getServerSideProps(context) {
+// 	const session = await getSession(context);
+// 	if (!session) {
+// 		context.res.writeHead(302, { Location: "/" });
+// 		context.res.end();
+// 		return {};
+// 	}
+// 	return {
+// 		props: {
+// 			user: session.user,
+// 		},
+// 	};
+// }
