@@ -40,7 +40,7 @@ export default function App({
 					></script>
 				</Head>
 				<Header />
-				<SmallScreenHeader />
+				{/* <SmallScreenHeader /> */}
 				<Component {...pageProps} />
 			</AppContext.Provider>
 		</SessionProvider>

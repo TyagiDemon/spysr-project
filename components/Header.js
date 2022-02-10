@@ -12,16 +12,13 @@ function Header() {
 
 	return (
 		<>
-			<Modal
-				open={open}
-				onClose={handleClose}
-			>
+			<Modal open={open} onClose={handleClose}>
 				<SignInPopup onClick={handleClose} />
 			</Modal>
-			<div className="lg:flex hidden px-16 py-4 items-center border-b-[1px] sticky top-0 w-full z-50 bg-white">
+			<div className="flex lg:px-16 px-4 py-4 items-center border-b-[1px] sticky top-0 w-full z-50 bg-white">
 				<div className="flex flex-1 items-center gap-16 text-xs text-gray-500">
 					<div className="text-purple-600 font-semibold text-2xl">headout</div>
-					<div className="flex items-center gap-4">
+					<div className="hidden lg:flex items-center gap-4">
 						<div>1. The London Pass - Unlimited...</div>
 						<div>2. Tickets</div>
 						<div>3. Confirm &#38; Pay</div>

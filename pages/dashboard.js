@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import { getSession } from "next-auth/react";
 import AppContext from "../contexts/AppContext";
 
 export default function dashboard() {
@@ -10,7 +9,7 @@ export default function dashboard() {
 			return;
 		}
 		setOrderList(JSON.parse(localStorage.getItem(user.email)).allOrders);
-	}, []);
+	}, [user]);
 
 	return (
 		<div className="lg:p-16 p-8">
@@ -49,17 +48,3 @@ export default function dashboard() {
 		</div>
 	);
 }
-
-// export async function getServerSideProps(context) {
-// 	const session = await getSession(context);
-// 	if (!session) {
-// 		context.res.writeHead(302, { Location: "/" });
-// 		context.res.end();
-// 		return {};
-// 	}
-// 	return {
-// 		props: {
-// 			user: session.user,
-// 		},
-// 	};
-// }
