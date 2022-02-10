@@ -6,7 +6,8 @@ export default async function paynow(req, res) {
 		var reqBody = JSON.parse(req.body);
 		var orderId = "RSGI" + Math.floor(Math.random(6) * 1000000);
 
-		var callbackUrl = "https://spysr-project.vercel.app/dashboard";
+		var callbackUrl =
+			"https://spysr-project.vercel.app/api/payment/paymentCallback";
 		var userInfo = {
 			custId: reqBody.custId, // CLIENT CUSTOMER ID
 			mobile: reqBody.mobile,
