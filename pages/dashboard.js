@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { compareAsc, format } from "date-fns";
+import { compareAsc, parseISO, format } from "date-fns";
 import AppContext from "../contexts/AppContext";
 
 export default function dashboard() {
@@ -32,7 +32,7 @@ export default function dashboard() {
 		let tempPrevious = [];
 
 		orderList.map((item) => {
-			if (compareAsc(item.date, currentDate) === 1) {
+			if (compareAsc(parseISO(item.date), currentDate) === 1) {
 				tempPrevious.push(item);
 			} else if (compareAsc(item.date, currentDate) === 0) {
 				tempCurrent.push(item);
@@ -60,7 +60,7 @@ export default function dashboard() {
 								key={index}
 								className="flex items-center gap-8 px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-evenly rounded-md shadow-md"
 							>
-								<div>{format(item.date, "d MMM yyyy")}</div>
+								<div>{format(parseISO(item.date), "d MMM yyyy")}</div>
 								<div className="font-semibold text-slate-700">
 									{item.guest.adult > 0 && (
 										<div>
@@ -91,7 +91,7 @@ export default function dashboard() {
 								key={index}
 								className="flex items-center gap-8 px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-evenly rounded-md shadow-md"
 							>
-								<div>{format(item.date, "d MMM yyyy")}</div>
+								<div>{format(parseISO(item.date), "d MMM yyyy")}</div>
 								<div className="font-semibold text-slate-700">
 									{item.guest.adult > 0 && (
 										<div>
@@ -122,7 +122,7 @@ export default function dashboard() {
 								key={index}
 								className="flex items-center gap-8 px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-evenly rounded-md shadow-md"
 							>
-								<div>{format(item.date, "d MMM yyyy")}</div>
+								<div>{format(parseISO(item.date), "d MMM yyyy")}</div>
 								<div className="font-semibold text-slate-700">
 									{item.guest.adult > 0 && (
 										<div>
