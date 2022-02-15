@@ -60,7 +60,7 @@ export default function dashboard() {
 								key={index}
 								className="flex items-center gap-8 px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-evenly rounded-md shadow-md"
 							>
-								<div>{item.date}</div>
+								<div>{format(item.date, "d MMM yyyy")}</div>
 								<div className="font-semibold text-slate-700">
 									{item.guest.adult > 0 && (
 										<div>
@@ -91,7 +91,7 @@ export default function dashboard() {
 								key={index}
 								className="flex items-center gap-8 px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-evenly rounded-md shadow-md"
 							>
-								<div>{item.date}</div>
+								<div>{format(item.date, "d MMM yyyy")}</div>
 								<div className="font-semibold text-slate-700">
 									{item.guest.adult > 0 && (
 										<div>
@@ -122,7 +122,7 @@ export default function dashboard() {
 								key={index}
 								className="flex items-center gap-8 px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-evenly rounded-md shadow-md"
 							>
-								<div>{item.date}</div>
+								<div>{format(item.date, "d MMM yyyy")}</div>
 								<div className="font-semibold text-slate-700">
 									{item.guest.adult > 0 && (
 										<div>
