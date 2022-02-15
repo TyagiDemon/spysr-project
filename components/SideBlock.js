@@ -24,7 +24,7 @@ function SideBlock({ onClickConfirmButton }) {
 						{date ? (
 							format(date, "MMM dd", { locale: enGB })
 						) : (
-							<a href="/selectDate" className="text-blue-600">Select a date</a>
+							<a href="/" className="text-blue-600">Select a date</a>
 						)}
 					</div>
 					<div className="text-cyan-600">Edit</div>

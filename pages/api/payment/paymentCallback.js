@@ -1,3 +1,5 @@
 export default function paymentCallback(req, res) {
-	res.redirect(307, "/dashboard");
+	if (req.body.STATUS === "TXN_SUCCESS")
+		res.writeHead(302, { Location: "/dashboard" }).end();
+	else res.writeHead(302, { Location: "/checkout" }).end();
 }

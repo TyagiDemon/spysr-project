@@ -121,7 +121,7 @@ function SelectDate() {
 						if (!date) {
 							return;
 						}
-						Router.push("/");
+						Router.push("/checkout");
 					}}
 				>
 					Next

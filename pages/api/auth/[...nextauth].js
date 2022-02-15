@@ -39,8 +39,8 @@ export default NextAuth({
 			if (url === "https://spysr-project.vercel.app/dashboard") {
 				return Promise.resolve("/dashboard");
 			}
-			if (url === "https://spysr-project.vercel.app/selectDate") {
-				return Promise.resolve("/selectDate");
+			if (url === "https://spysr-project.vercel.app/checkout") {
+				return Promise.resolve("/checkout");
 			}
 			return Promise.resolve("/");
 		},
