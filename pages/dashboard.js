@@ -32,7 +32,7 @@ export default function dashboard() {
 		let tempPrevious = [];
 
 		orderList.map((item) => {
-			if (compareAsc(parseISO(item.date), currentDate) === 1) {
+			if (compareAsc(parseISO(item.date), currentDate) === -1) {
 				tempPrevious.push(item);
 			} else if (compareAsc(item.date, currentDate) === 0) {
 				tempCurrent.push(item);
