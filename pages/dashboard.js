@@ -47,10 +47,21 @@ export default function dashboard() {
 	}, [orderList]);
 
 	return (
-		<div className="lg:p-16 p-8">
-			<div className="font-bold text-2xl">Welcome,</div>
+		<div className="lg:p-16 p-4">
 			{user && (
 				<div>
+					<div className="h-64 flex p-2 lg:p-20 bg-gray-100 opacity-90 justify-between items-center">
+						<div>
+							<div className="font-bold text-xl lg:text-2xl">
+								Welcome {user.name}
+							</div>
+							<div className="text-sm mt-2">Your email: {user.email}</div>
+						</div>
+						<img
+							src={user.image}
+							className="h-12 lg:h-full w-auto rounded-full"
+						/>
+					</div>
 					<div className="text-gray-600 font-semibold text-xl my-4">
 						Current trips
 					</div>
@@ -58,7 +69,7 @@ export default function dashboard() {
 						current.map((item, index) => (
 							<div
 								key={index}
-								className="flex items-center gap-8 px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-evenly rounded-md shadow-md"
+								className="flex items-center gap-8 px-2 lg:px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-between rounded-md shadow-md"
 							>
 								<div>{format(parseISO(item.date), "d MMM yyyy")}</div>
 								<div className="font-semibold text-slate-700">
@@ -76,7 +87,7 @@ export default function dashboard() {
 								<div className="flex gap-2 font-bold text-xl">
 									<div>Total</div>
 									<div>
-										&#8377; {item.guest.adult * 95 + item.guest.child * 70}
+										&#8377;{item.guest.adult * 95 + item.guest.child * 70}
 									</div>
 								</div>
 							</div>
@@ -89,7 +100,7 @@ export default function dashboard() {
 						upcoming.map((item, index) => (
 							<div
 								key={index}
-								className="flex items-center gap-8 px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-evenly rounded-md shadow-md"
+								className="flex items-center gap-8 px-2 lg:px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-between rounded-md shadow-md"
 							>
 								<div>{format(parseISO(item.date), "d MMM yyyy")}</div>
 								<div className="font-semibold text-slate-700">
@@ -120,7 +131,7 @@ export default function dashboard() {
 						previous.map((item, index) => (
 							<div
 								key={index}
-								className="flex items-center gap-8 px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-evenly rounded-md shadow-md"
+								className="flex items-center gap-8 px-2 lg:px-8 py-3 bg-gray-100 w-[99%] my-4 lg:w-[35%] mx-auto justify-between rounded-md shadow-md"
 							>
 								<div>{format(parseISO(item.date), "d MMM yyyy")}</div>
 								<div className="font-semibold text-slate-700">
