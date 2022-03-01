@@ -21,7 +21,6 @@ export default function App({
 		}
 
 		const session = await getSession();
-		console.log(session);
 		if (session) {
 			setUser(session.user);
 		} else {

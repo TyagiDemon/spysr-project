@@ -3,6 +3,7 @@ import { getSession, signOut } from "next-auth/react";
 import SignInPopup from "./SignInPopup";
 import Modal from "@mui/material/Modal";
 import AppContext from "../contexts/AppContext";
+import Link from "next/link";
 
 function Header() {
 	const [open, setOpen] = useState(false);
@@ -42,7 +43,9 @@ function Header() {
 					{user && (
 						<div className="flex items-center gap-2">
 							<img src={user.image} className="h-6 w-6 rounded-full" />
-							<div>{user.name}</div>
+							<div className="cursor-pointer">
+								<Link href="/dashboard">{user.name}</Link>
+							</div>
 							<i
 								onClick={() => signOut()}
 								className="fas fa-sign-out-alt cursor-pointer"
